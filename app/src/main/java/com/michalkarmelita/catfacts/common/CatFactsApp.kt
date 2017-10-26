@@ -1,8 +1,8 @@
-package com.michalkarmelita.catfacts
+package com.michalkarmelita.catfacts.common
 
 import android.app.Activity
 import android.app.Application
-import com.michalkarmelita.catfacts.di.DaggerAppComponent
+import com.michalkarmelita.catfacts.common.di.DaggerAppComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject

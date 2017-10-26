@@ -1,12 +1,13 @@
-package com.michalkarmelita.catfacts.di
+package com.michalkarmelita.catfacts.common.di
 
 import android.app.Application
-import com.michalkarmelita.catfacts.CatFactsApp
+import com.michalkarmelita.catfacts.common.CatFactsApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+import javax.inject.Singleton
 
-
+@Singleton
 @Component(modules = arrayOf(AndroidInjectionModule::class, AppModule::class, ActivityBuilder::class))
 interface AppComponent {
 

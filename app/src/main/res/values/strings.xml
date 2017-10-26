@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cat Facts</string>
+    <string name="fact_length_label">Fact length:</string>
 </resources>

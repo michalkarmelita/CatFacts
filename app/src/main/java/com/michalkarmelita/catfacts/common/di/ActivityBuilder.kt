@@ -1,4 +1,4 @@
-package com.michalkarmelita.catfacts.di
+package com.michalkarmelita.catfacts.common.di
 
 import com.michalkarmelita.catfacts.facts.di.CatFactsActivityModule
 import com.michalkarmelita.catfacts.facts.ui.CatFactsActivity
@@ -8,6 +8,7 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityBuilder {
+
     @ContributesAndroidInjector(modules = arrayOf(CatFactsActivityModule::class))
     abstract fun bindCatFactsActivity(): CatFactsActivity
 
