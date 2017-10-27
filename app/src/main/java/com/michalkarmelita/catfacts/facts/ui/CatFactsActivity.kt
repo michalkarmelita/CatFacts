@@ -1,5 +1,6 @@
 package com.michalkarmelita.catfacts.facts.ui
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -7,6 +8,7 @@ import android.support.v7.widget.PagerSnapHelper
 import android.widget.SeekBar
 import com.michalkarmelita.catfacts.R
 import com.michalkarmelita.catfacts.common.BaseActivity
+import com.michalkarmelita.catfacts.common.show
 import com.michalkarmelita.catfacts.facts.viewmodel.CatFactsViewModel
 import com.michalkarmelita.catfacts.facts.viewmodel.CatFactsViewModelFactory
 import dagger.android.AndroidInjection
@@ -39,7 +41,9 @@ class CatFactsActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CatFactsViewModel::class.java)
         viewModel.getCatFacts().observe(this, adapter)
-        factLengthSlider.progress = viewModel.getMaxLength()
+        viewModel.getMaxLength().observe(this, Observer { value -> factLengthValue.text = value.toString() })
+        viewModel.getProgress().observe(this, Observer { progressVisibility -> progressbar.show(progressVisibility!!) })
+        factLengthSlider.progress = viewModel.getMaxLengthValue()
     }
 
     override fun onProgressChanged(p0: SeekBar?, value: Int, p2: Boolean) {
