@@ -17,8 +17,8 @@ class CatFactsAdapter : RecyclerView.Adapter<FactViewHolder>(), Observer<CatFact
     override fun onChanged(data: CatFacts?) {
         if (data != null) {
             facts.addAll(data.data)
+            notifyItemInserted(facts.size - data.data.size)
         }
-        notifyDataSetChanged()
     }
 
 
