@@ -8,9 +8,9 @@ import io.reactivex.functions.Function
 class Mapper {
 
     fun map(): Function<CatFactApiResponse, CatFacts> {
-        return Function { (total, _, current_page, last_page, _, _, _, _, data) ->
+        return Function { (total, _, current_page, last_page, nextPage, _, _, _, data) ->
             val facts = data.map { Fact(it.fact) }
-            CatFacts(total, current_page, last_page, facts)
+            CatFacts(total, current_page, last_page, nextPage, facts)
         }
     }
 

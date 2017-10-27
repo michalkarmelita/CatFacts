@@ -2,6 +2,7 @@ package com.michalkarmelita.catfacts.facts.ui
 
 import android.arch.lifecycle.Observer
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

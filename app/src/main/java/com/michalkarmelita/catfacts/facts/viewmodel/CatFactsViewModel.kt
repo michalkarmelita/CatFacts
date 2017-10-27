@@ -21,7 +21,6 @@ class CatFactsViewModel(private val repository: CatFactsRepository) : ViewModel(
             LiveDataReactiveStreams.fromPublisher(repository.getCatFacts(limit)) })
     }
 
-
     fun setMaxLength(newLimit: Int) {
         limit.postValue(newLimit * lengthStep)
     }

@@ -6,7 +6,7 @@ data class CatFactApiResponse(
 		val per_page: String, //100
 		val current_page: Int, //1
 		val last_page: Int, //2
-		val next_page_url: Any, //https://catfact.ninja/facts?page=2
+		val next_page_url: String, //https://catfact.ninja/facts?page=2
 		val prev_page_url: String, //null
 		val from: Int, //1
 		val to: Int, //100
