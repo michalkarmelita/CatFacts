@@ -1,16 +1,19 @@
 package com.michalkarmelita.catfacts.facts.ui
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.michalkarmelita.catfacts.R
 import com.michalkarmelita.catfacts.facts.model.CatFacts
 import com.michalkarmelita.catfacts.facts.model.Fact
 
 class CatFactsAdapter : RecyclerView.Adapter<FactViewHolder>(), Observer<CatFacts> {
+
+    private val shareLiveData = MutableLiveData<String>()
+    private var facts = mutableListOf<Fact>()
+
     override fun onChanged(data: CatFacts?) {
         if (data != null) {
             facts.addAll(data.data)
@@ -18,10 +21,9 @@ class CatFactsAdapter : RecyclerView.Adapter<FactViewHolder>(), Observer<CatFact
         notifyDataSetChanged()
     }
 
-    var facts = mutableListOf<Fact>()
 
     override fun onBindViewHolder(holder: FactViewHolder?, position: Int) {
-        holder?.bind(facts[position])
+        holder?.bind(facts[position], shareLiveData)
     }
 
     override fun getItemCount(): Int = facts.size
@@ -35,5 +37,6 @@ class CatFactsAdapter : RecyclerView.Adapter<FactViewHolder>(), Observer<CatFact
         notifyDataSetChanged()
     }
 
+    fun getShareLiveData() = shareLiveData
 }
 

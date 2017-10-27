@@ -15,4 +15,12 @@
         android:gravity="center"
         tools:text="Cat Fact #123"/>
 
+    <Button
+        android:id="@+id/fact_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fact_share_button_text"
+        android:layout_gravity="bottom|right"
+        android:background="@null"/>
+
 </android.support.v7.widget.CardView>

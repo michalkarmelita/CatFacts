@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Cat Facts</string>
     <string name="fact_length_label">Fact length:</string>
+    <string name="fact_share_subject">Interesting Cat Fact!</string>
+    <string name="share_chooser_title">Share via…</string>
+    <string name="fact_share_button_text">share</string>
 </resources>

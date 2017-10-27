@@ -14,6 +14,9 @@ import com.michalkarmelita.catfacts.facts.viewmodel.CatFactsViewModelFactory
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_cat_facts.*
 import javax.inject.Inject
+import android.support.v4.app.ShareCompat
+
+
 
 class CatFactsActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
 
@@ -26,7 +29,11 @@ class CatFactsActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
     @Inject
     lateinit var snapHelper: PagerSnapHelper
 
-    lateinit var viewModel: CatFactsViewModel
+    private lateinit var viewModel: CatFactsViewModel
+
+    companion object {
+        private val SHARE_TYPE = "plain/text"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -44,6 +51,17 @@ class CatFactsActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
         viewModel.getMaxLength().observe(this, Observer { value -> factLengthValue.text = value.toString() })
         viewModel.getProgress().observe(this, Observer { progressVisibility -> progressbar.show(progressVisibility!!) })
         factLengthSlider.progress = viewModel.getMaxLengthValue()
+
+        adapter.getShareLiveData().observe(this, Observer { text ->
+            val intentBuilder = ShareCompat.IntentBuilder.from(this)
+                    .setSubject(getString(R.string.fact_share_subject))
+                    .setText(text)
+                    .setType(SHARE_TYPE)
+                    .setChooserTitle(R.string.share_chooser_title)
+
+            startActivity(intentBuilder.createChooserIntent())
+        })
+
     }
 
     override fun onProgressChanged(p0: SeekBar?, value: Int, p2: Boolean) {
