@@ -7,14 +7,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class CatFactsRepository @Inject constructor(val api: CatsApiService) {
+class CatFactsRepository @Inject constructor(private val api: CatsApiService) {
 
     companion object {
-        val itemsPerPage = 100
+        val itemsPerPage = 10
     }
 
-    fun getCatFacts(limit: Int): Flowable<CatFacts> {
-        return api.getCatFacts(limit, itemsPerPage)
+    fun getCatFacts(maxLength: Int): Flowable<CatFacts> {
+        return api.getCatFacts(itemsPerPage, maxLength)
                 .subscribeOn(Schedulers.io())
                 .map(Mapper().map())
                 .observeOn(AndroidSchedulers.mainThread())

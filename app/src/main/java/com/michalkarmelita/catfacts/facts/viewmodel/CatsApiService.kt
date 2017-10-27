@@ -8,12 +8,12 @@ import retrofit2.http.Query
 interface CatsApiService {
 
     @GET("/facts")
-    fun getCatFacts(@Query("limit") limit: Int,
-                    @Query("max_length") maxLength: Int): Flowable<CatFactApiResponse>
+    fun getCatFacts(@Query("limit") itemsPerPage: Int,
+                    @Query("max_length") length: Int): Flowable<CatFactApiResponse>
 
     @GET
-    fun getCatFactsPage(@Query("limit") limit: Int,
-                        @Query("max_length") maxLength: Int,
+    fun getCatFactsPage(@Query("limit") itemsPerPage: Int,
+                        @Query("max_length") length: Int,
                         @Query("page") page: Int): Flowable<CatFactApiResponse>
 
 }

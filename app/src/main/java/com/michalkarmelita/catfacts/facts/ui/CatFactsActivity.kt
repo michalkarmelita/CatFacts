@@ -1,12 +1,9 @@
 package com.michalkarmelita.catfacts.facts.ui
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
-import android.view.MotionEvent
-import android.view.View
 import android.widget.SeekBar
 import com.michalkarmelita.catfacts.R
 import com.michalkarmelita.catfacts.common.BaseActivity
@@ -41,11 +38,13 @@ class CatFactsActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
         factLengthSlider.setOnSeekBarChangeListener(this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CatFactsViewModel::class.java)
-        viewModel.getCatFacts().observe(this, Observer { facts -> adapter.addData(facts!!) })
+        viewModel.getCatFacts().observe(this, adapter)
+        factLengthSlider.progress = viewModel.getMaxLength()
     }
 
-    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-
+    override fun onProgressChanged(p0: SeekBar?, value: Int, p2: Boolean) {
+        viewModel.setMaxLength(value)
+        adapter.reset()
     }
 
     override fun onStartTrackingTouch(p0: SeekBar?) {
