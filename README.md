@@ -1,5 +1,12 @@
 # CatFacts
 
-The application follows MVVM architecture. It uses RxJava on repository side and LiveData to propagate data into views.
+### About
+This is a playground for testing MVVM architecture, android architecture components and interoperability between RxJava nad LiveData.
 
-Cat Facts are displayed in a horizontal RecyclerView.
+### App functionality
+Application displays random cat facts for a with given max length. It also enables an option to share.
+
+![demo](demo.gif)
+
+Resources:
+[Cat Fact API](https://catfact.ninja/#/Cat_Facts)
